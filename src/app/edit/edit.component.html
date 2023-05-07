@@ -1,0 +1,30 @@
+<div class="block">
+    <form *ngIf="users">
+     <h1>Edit User</h1>
+       <p>
+       <label>User Id</label>
+       <input type="text" value="{{users.userId}}" [disabled]="!users.isEditable"/>
+       </p>
+       <p>
+       <label>First Name</label>
+       <input type="text" value="{{users.firstName}}" [disabled]="!users.isEditable"/>
+       </p>
+       <p>
+       <label>Last Name</label>
+       <input type="text" value="{{users.lastName}}" [disabled]="!users.isEditable"/>
+       </p>
+       <p>
+       <label>Email</label>
+       <input type="text" value="{{users.email}}" [disabled]="!users.isEditable"/>
+       </p>
+    <p>
+       <label>Mobile</label>
+       <input type="text" value="{{users.mobile}}" [disabled]="!users.isEditable"/>
+    </p>
+    <p>
+       <button (click)="users.isEditable=!users.isEditable" *ngIf="!users.isEditable">Edit</button>
+       <button *ngIf="users.isEditable" (click)="users.isEditable=!users.isEditable">Save</button>
+    </p>
+    </form>
+ </div>
+ 

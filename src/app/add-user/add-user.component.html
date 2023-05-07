@@ -1,0 +1,65 @@
+<div class="block">
+    <h1>User Details</h1>
+    <h2>Search User</h2>
+    <input type="text" [(ngModel)]="searchUser"><br/>
+    <p><button type="submit" [(ngModel)]="searchUser" class="srch">Search</button></p><br/>
+<table border="1">
+        <tr>
+        <th>User Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Action</th>
+        </tr>
+        <tr *ngFor="let usr of user | search:searchUser;let i=index">
+            <td>{{usr.userId}}</td>
+            <td>{{usr.firstName}}</td>
+            <td>{{usr.lastName}}</td>
+            <td>{{usr.email}}</td>
+            <td>{{usr.mobile}}</td> 
+            <td><button (click)="deleteUser(i)">Delete</button>
+            <button [routerLink]="['/edit',usr.userId]">Edit</button></td> 
+</table>
+</div><br/>
+<div>
+<h1>Add User</h1>
+<form #adduser="ngForm" (ngSubmit)="onSubmit(adduser)">
+    <div>
+        <label>User Id</label>
+        
+            <p><input type="text" name="id" [(ngModel)]="userId" required pattern="^[0-9]*+$" ngModel></p>
+    </div>
+    <div>
+        <label>First Name</label>
+        
+        <p><input type="text" name="firstName" [(ngModel)]="firstName" required pattern="^[a-zA-Z]*+$" ngModel></p>
+    </div>
+    <div>
+        <label>Last Name</label>
+        
+        <p><input type="text" name="lastName" [(ngModel)]="lastName" pattern="^[a-zA-Z]*+$" ngModel></p>
+    </div>
+    <div>
+        <label>Email</label>
+        
+            <p><input type="text" name="email" [(ngModel)]="email" required email ngModel></p>
+    </div>
+    <div>
+        <label>Mobile</label>
+        
+            <p><input type="text" name="mobile" [(ngModel)]="mobile" required pattern="^[0-9]*+$" ngModel></p>
+    </div>
+    <div>
+            <button [disabled]="!adduser.valid" (click)="addUser()">Add User</button>
+        
+    </div>
+    
+</form>
+</div>
+
+
+
+
+
+
